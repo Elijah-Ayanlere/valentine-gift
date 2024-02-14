@@ -1,0 +1,38 @@
+<!-- thankyou.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Thank You</h1>
+            <p>Thank you for being my Val.</p>
+            <p id="loveMessage">I love you, <span id="username"></span></p>
+            <p>Click the button, I have a special gift for you.</p>
+            <button onclick="redirectToGift()">Generate Gift</button>  
+        </div>
+    </div>
+    <script>
+        function redirectToGift() {
+            const username = document.getElementById('username').innerText;
+            window.location.replace(`gift.html?name=${encodeURIComponent(username)}`);
+        }
+        
+        // Add this script to set the username from the query parameter
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('name');
+            const usernameSpan = document.getElementById('username');
+            
+            if (username) {
+                usernameSpan.textContent = username;
+            }
+        });
+    </script>
+</body>
+</html>
